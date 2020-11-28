@@ -2,9 +2,11 @@ package com.mustafa.implementation;
 
 import com.mustafa.dto.UserDTO;
 import com.mustafa.services.UserService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl extends AbstractMapService<UserDTO,String> implements UserService{
     @Override
     public List<UserDTO> findAll() {
