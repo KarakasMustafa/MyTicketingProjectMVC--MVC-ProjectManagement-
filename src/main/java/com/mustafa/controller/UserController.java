@@ -46,4 +46,20 @@ public class UserController {
         return "redirect:/user/create";
 
     }
+
+//    @GetMapping("/update/{id}")
+//    public String updateUser(@PathVariable("id") String id,Model model){
+//
+//        userService.update(userService.findById(id));
+//        return "redirect:/user/create";
+//    }
+
+    @GetMapping("/update/{id}")
+    public String editUser(@PathVariable("id") String id,Model model){
+        model.addAttribute("user",userService.findById(id));
+        model.addAttribute("roles",roleService.findAll());
+        model.addAttribute("users",userService.findAll());
+
+        return "/user/update";
+    }
 }
