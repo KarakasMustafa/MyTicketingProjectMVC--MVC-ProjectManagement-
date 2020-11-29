@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/project")
@@ -42,7 +41,6 @@ public class ProjectController {
         projectService.save(project);
         project.setStatus(Status.OPEN);
 
-
         return "redirect:/project/create";
     }
 
@@ -58,6 +56,8 @@ public class ProjectController {
 
         return "redirect:/project/create";
     }
+
+
 
 
 }
