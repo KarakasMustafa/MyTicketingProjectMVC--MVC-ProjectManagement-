@@ -47,12 +47,12 @@ public class UserController {
 
     }
 
-//    @GetMapping("/update/{id}")
-//    public String updateUser(@PathVariable("id") String id,Model model){
-//
-//        userService.update(userService.findById(id));
-//        return "redirect:/user/create";
-//    }
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable("id") String id,UserDTO user,Model model){
+
+        userService.update(user);
+        return "redirect:/user/create";
+    }
 
     @GetMapping("/update/{id}")
     public String editUser(@PathVariable("id") String id,Model model){
