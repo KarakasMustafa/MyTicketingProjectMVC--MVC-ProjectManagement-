@@ -73,13 +73,13 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Project Start Date</label>
-                                                    <input type="date" class="form-control">
+                                                    <input type="date" th:field="*{startDate}" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Project End Date</label>
-                                                    <input type="date" class="form-control">
+                                                    <input type="date" th:field="*{endDate}" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
                                             <tr th:each="project : ${projects}">
                                                 <td th:text="${project.projectName}"></td>
                                                 <td th:text="${project.projectCode}"></td>
-                                                <td th:text="${#temporals.format(project.startDate,'MM-dd-yyyy')+'/'+#temporals.format(project.endDate,'MM-dd-yyyy')}"></td>
+                                                <td th:text="${#temporals.format(project.startDate,'MM-dd-yyyy') + '/' + #temporals.format(project.endDate,'MM-dd-yyyy')}"></td>
                                                 <td th:text="${project.assignedManager.firstName+' '+project.assignedManager.lastName}"></td>
                                                 <td th:text="${project.status}"></td>
                                                 <td class="actions">
@@ -151,6 +151,9 @@
                                                     </a>
                                                     <a th:href="@{/project/delete/{id}(id=${project.projectCode})}" class="delete-row">
                                                         <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                                    </a>
+                                                    <a>
+                                                        <button type="button" class="btn btn-primary btn-sm">Complete</button>
                                                     </a>
                                                 </td>
                                             </tr>
