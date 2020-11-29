@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/project")
@@ -42,7 +41,6 @@ public class ProjectController {
         projectService.save(project);
         project.setStatus(Status.OPEN);
 
-
         return "redirect:/project/create";
     }
 
@@ -52,12 +50,23 @@ public class ProjectController {
         return "redirect:/project/create";
     }
 
+    @GetMapping("/update/{projectcode}")
+    public String editProject(@PathVariable("projectcode") String projectcode,Model model,ProjectDTO project){
+        model.addAttribute("project",projectService.findById(projectcode));
+        model.addAttribute("projects",projectService.findAll());
+        model.addAttribute("manager",userService.findManagers());
+
+        return "/project/update";
+    }
+
     @GetMapping("/complete/{projectcode}")
     public String completeProject(@PathVariable("projectcode") String projectcode){
         projectService.complete(projectService.findById(projectcode));
 
         return "redirect:/project/create";
     }
+
+
 
 
 }
