@@ -1,13 +1,18 @@
 package com.mustafa.bootstrap;
 
+import com.mustafa.dto.ProjectDTO;
 import com.mustafa.dto.RoleDTO;
 import com.mustafa.dto.UserDTO;
 import com.mustafa.enums.Gender;
+import com.mustafa.enums.Status;
+import com.mustafa.services.ProjectService;
 import com.mustafa.services.RoleService;
 import com.mustafa.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 
 @Component
@@ -15,10 +20,12 @@ public class DataGenerator implements CommandLineRunner {
 
     RoleService roleService;
     UserService userService;
+    ProjectService projectService;
 
-    public DataGenerator(RoleService roleService, UserService userService) {
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
         this.roleService = roleService;
         this.userService = userService;
+        this.projectService = projectService;
     }
 
     @Override
@@ -43,5 +50,14 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user3);
         userService.save(user4);
         userService.save(user5);
+
+        ProjectDTO project1 = new ProjectDTO("PR001","Ticketing Project",user2, LocalDate.now(),LocalDate.now().plusMonths(2),"This is testng project", Status.OPEN);
+        ProjectDTO project2 = new ProjectDTO("PR007","Best Practices",user3, LocalDate.now().minusMonths(1),LocalDate.now().plusMonths(1),"Cucumber Project", Status.COMPLETED);
+        ProjectDTO project3 = new ProjectDTO("PR005","Example Project",user1, LocalDate.now().minusWeeks(3),LocalDate.now().plusWeeks(5),"SDET to BackEnd Engineer", Status.IN_PROGRESS);
+        projectService.save(project1);
+        projectService.save(project2);
+        projectService.save(project3);
+
+
     }
 }

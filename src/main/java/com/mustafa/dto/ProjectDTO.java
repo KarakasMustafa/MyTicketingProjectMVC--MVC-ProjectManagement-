@@ -1,5 +1,6 @@
 package com.mustafa.dto;
 
+import com.mustafa.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class ProjectDTO {
     private LocalDate startDate;
     private LocalDate endDate;
     private String projectDetail;
+    private Status status;
 
 
 }

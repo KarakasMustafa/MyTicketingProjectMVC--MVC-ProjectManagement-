@@ -2,9 +2,11 @@ package com.mustafa.implementation;
 
 import com.mustafa.dto.ProjectDTO;
 import com.mustafa.services.ProjectService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> implements ProjectService {
     @Override
     public List<ProjectDTO> findAll() {

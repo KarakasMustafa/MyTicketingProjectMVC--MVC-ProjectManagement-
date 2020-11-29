@@ -32,12 +32,12 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs validation" novalidate>
+                                    <form class="needs validation" novalidate th:action="@{/project/create}" method="post" th:object="${project}">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="projectname" class="col-form-label">Project Name</label>
-                                                    <input id="projectname" type="text" placeholder="Project Name"
+                                                    <input id="projectname" type="text" placeholder="Project Name" th:field="*{projectName}"
                                                            class="form-control" required>
                                                     <div class="invalid-feedback">
                                                         Please Enter Project Name.
@@ -49,7 +49,7 @@
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label for="projectcode" class="col-form-label">Project Code</label>
-                                                        <input id="projectcode" type="text" placeholder="Project Code"
+                                                        <input id="projectcode" type="text" placeholder="Project Code" th:field="*{projectCode}"
                                                                class="form-control" required>
                                                         <div class="invalid-feedback">
                                                             Please Enter Project Code.
@@ -61,12 +61,11 @@
                                                 <div class="col">
                                                     <div class="form-group">
                                                         <label>Assigned Manager</label><br>
-                                                        <select class="custom-select"
+                                                        <select class="custom-select" th:field="*{assignedManager}"
                                                                 required="required">
-                                                            <option>Select</option>
-                                                            <option></option>
+                                                            <option  th:value="''" th:text="Select"></option>
+                                                            <option th:each="manager : ${managers}" th:value="${manager.userName}" th:text="${manager.firstName+' '+manager.lastName}"></option>
                                                         </select>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,7 +85,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <div class="form-control">
+                                                <div class="form-group">
                                                     <label>Project Detail</label>
                                                     <textarea class="form-control"></textarea>
                                                 </div>
@@ -133,14 +132,30 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th scope="col"></th>
+                                                <td>Project Code</td>
+                                                <td>Project Name</td>
+                                                <td>Start/End Date</td>
+                                                <td>Manager</td>
+                                                <td>Status</td>
+                                                <td>Action</td>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                            <tr th:each="project : ${projects}">
+                                                <td th:text="${project.projectName}"></td>
+                                                <td th:text="${project.projectCode}"></td>
+                                                <td th:text="${project.startDate+'-'+project.endDate}"></td>
+                                                <td th:text="${project.assignedManager.firstName+' '+project.assignedManager.lastName}"></td>
+                                                <td th:text="${project.status}"></td>
+                                                <td class="actions">
+                                                    <a>
+                                                        <button type="button" class="btn btn-warning btn-sm">Update
+                                                        </button>
+                                                    </a>
+                                                    <a href="" class="delete-row">
+                                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                                    </a>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
