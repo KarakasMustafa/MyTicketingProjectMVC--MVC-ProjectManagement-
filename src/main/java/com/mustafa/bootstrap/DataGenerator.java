@@ -36,7 +36,7 @@ public class DataGenerator implements CommandLineRunner {
         UserDTO user2 = new UserDTO("Tom","Sawyer","TestEmail@email.com","7894561230","Abc1",true,managerRole, Gender.MALE);
         UserDTO user3 = new UserDTO("Nezaro","Xiro","nezaroxiro@gmail.com","6157894562","Abc1",true,managerRole, Gender.FEMALE);
         UserDTO user4 = new UserDTO("Grandpa","Apo","grandpa@gmail.com","4156879452","Abc1",true,employeeRole, Gender.FEMALE);
-        UserDTO user5 = new UserDTO("Ozzy","Dev","email@testemail.com","3514786925","Abc1",true,employeeRole, Gender.MALE);
+        UserDTO user5 = new UserDTO("Ozzy","Dev","thisistest@testemail.com","3514786925","Abc1",true,employeeRole, Gender.MALE);
 
         userService.save(user1);
         userService.save(user2);

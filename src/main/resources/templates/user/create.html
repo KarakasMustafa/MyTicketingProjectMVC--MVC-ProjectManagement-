@@ -83,7 +83,7 @@
                                                 <div class="col-sm-6 col-md-6">
                                                     <div class="form-group">
                                                         <label for="phone_number" class="col-form-label">Phone Number</label>
-                                                        <input id="phone_number" type="text" th:field="*{phone}"
+                                                        <input id="phone_number" type="text" th:field="*{phoneNumber}"
                                                                placeholder="Phone Number" class="form-control" pattern="^\d{10}" required>
                                                         <div class="invalid-feedback">
                                                             Please Enter A 10 Digit Phone Number.
@@ -193,55 +193,19 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>Mustafa</td>
-                                                    <td>email@email.com</td>
-                                                    <td>Male</td>
-                                                    <td>1234567890</td>
-                                                    <td>Employee</td>
+                                                <tr th:each="user : ${users}">
+                                                    <td th:text="${user.firstName + ' ' + user.lastName}"></td>
+                                                    <td th:text="${user.userName}"></td>
+                                                    <td th:text="${user.gender.value}"></td>
+                                                    <td th:text="${user.phoneNumber}"></td>
+                                                    <td th:text="${user.role.description}" th:value="${user.role.id}"></td>
                                                     <td class="actions">
                                                         <a href="">
                                                             <button type="button" class="btn btn-warning btn-sm">Update
                                                             </button>
                                                         </a>
                                                         <a href="" class="delete-row">
-                                                            <button type="button" class="btn btn-secondary btn-sm">
-                                                                Delete
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td>1234567890</td>
-                                                    <td>Employee</td>
-                                                    <td class="actions">
-                                                        <a href="">
-                                                            <button type="button" class="btn btn-warning btn-sm">Update
-                                                            </button>
-                                                        </a>
-                                                        <a href="" class="delete-row">
-                                                            <button type="button" class="btn btn-secondary btn-sm">
-                                                                Delete
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td>1234567890</td>
-                                                    <td>Employee</td>
-                                                    <td class="actions">
-                                                        <a href="">
-                                                            <button type="button" class="btn btn-warning btn-sm">Update
-                                                            </button>
-                                                        </a>
-                                                        <a href="" class="delete-row">
-                                                            <button type="button" class="btn btn-secondary btn-sm">
+                                                            <button type="button" class="btn btn-danger btn-sm">
                                                                 Delete
                                                             </button>
                                                         </a>
