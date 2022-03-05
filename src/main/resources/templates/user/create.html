@@ -83,7 +83,7 @@
                                                 <div class="col-sm-6 col-md-6">
                                                     <div class="form-group">
                                                         <label for="phone_number" class="col-form-label">Phone Number</label>
-                                                        <input id="phone_number" type="text" th:field="*{phoneNumber}"
+                                                        <input id="phone_number" type="tel" th:field="*{phone}"
                                                                placeholder="Phone Number" class="form-control" pattern="^\d{10}" required>
                                                         <div class="invalid-feedback">
                                                             Please Enter A 10 Digit Phone Number.
@@ -97,7 +97,7 @@
                                                     <div class="form-group">
                                                         <label for="password"
                                                                class="col-form-label">Password</label>
-                                                        <input id="password" type="password" placeholder="Password" th:field="*{passWord}" required
+                                                        <input id="password" type="password" placeholder="Password" th:field="*{password}" required
                                                                class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}">
                                                         <div class="invalid-feedback">
                                                             Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters
@@ -108,7 +108,7 @@
                                                 <div class="col-sm-6 col-md-6">
                                                     <div class="form-group">
                                                         <label for="repassword" class="col-form-label">Confirm Password</label>
-                                                        <input id="repassword" type="password" placeholder="Re-Enter Password" th:field="*{passWord}" required
+                                                        <input id="repassword" type="password" placeholder="Re-Enter Password" th:field="*{password}" required
                                                                class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}">
                                                         <div class="invalid-feedback">
                                                             Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters
@@ -193,7 +193,7 @@
                                                     <td th:text="${user.firstName + ' ' + user.lastName}"></td>
                                                     <td th:text="${user.userName}"></td>
                                                     <td th:text="${user.gender.value}"></td>
-                                                    <td th:text="${user.phoneNumber}"></td>
+                                                    <td th:text="${user.phone}"></td>
                                                     <td th:text="${user.role.description}" th:value="${user.role.id}"></td>
                                                     <td class="actions">
                                                         <a th:href="@{/user/update/{id}(id=${user.userName})}">

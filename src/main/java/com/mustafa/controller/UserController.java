@@ -1,6 +1,10 @@
 package com.mustafa.controller;
 
+import com.mustafa.bootstrap.DataGenerator;
+import com.mustafa.dto.RoleDTO;
 import com.mustafa.dto.UserDTO;
+import com.mustafa.entity.User;
+import com.mustafa.implementations.RoleServiceImpl;
 import com.mustafa.services.RoleService;
 import com.mustafa.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,45 +25,47 @@ public class UserController {
     UserService userService;
 
 
+
     @GetMapping("/create")
     public String createUser(Model model){
-        model.addAttribute("user",new UserDTO());
-        model.addAttribute("roles",roleService.findAll());
-        model.addAttribute("users",userService.findAll());
 
-
+        model.addAttribute("user", new UserDTO());
+        model.addAttribute("roles", roleService.findAll());
+        model.addAttribute("users", userService.findAll());
         return "/user/create";
     }
 
     @PostMapping("/create")
-    public String insertUser(UserDTO user,Model model){
+    public String insertUser(UserDTO user, Model model){
 
         userService.save(user);
-
+//        model.addAttribute("user", new UserDTO());
+//        model.addAttribute("users", userService.findAll());
+//        model.addAttribute("roles", roleService.findAll());
         return "redirect:/user/create";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") String id){
+    @GetMapping("/update/{username}")
+    public String editUser(@PathVariable("username") String username, Model model){
 
-        userService.deleteById(id);
-        return "redirect:/user/create";
+        model.addAttribute("user", userService.findByID(username));
+        model.addAttribute("users", userService.findAll());
+        model.addAttribute("roles", roleService.findAll());
 
+        return "/user/update";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateUser(@PathVariable("id") String id,UserDTO user,Model model){
-
+    @PostMapping("/update/{username}")
+    public String updateUser(@PathVariable("username") String username, UserDTO user,Model model){
         userService.update(user);
         return "redirect:/user/create";
     }
 
-    @GetMapping("/update/{id}")
-    public String editUser(@PathVariable("id") String id,Model model){
-        model.addAttribute("user",userService.findById(id));
-        model.addAttribute("roles",roleService.findAll());
-        model.addAttribute("users",userService.findAll());
-
-        return "/user/update";
+    @GetMapping("/delete/{username}")
+    public String deleteUser(@PathVariable("username") String username){
+        userService.deleteByID(username);
+        return "redirect:/user/create";
     }
+
+
 }

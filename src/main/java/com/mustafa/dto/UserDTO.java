@@ -6,20 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO {
 
     private String firstName;
     private String lastName;
     private String userName;
-    private String phoneNumber;
-    private String passWord;
+    private String password;
     private boolean enabled;
+    private String phone;
     private RoleDTO role;
     private Gender gender;
-
-
 }

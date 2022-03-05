@@ -1,15 +1,15 @@
 package com.mustafa.enums;
 
 public enum Status {
-    COMPLETED("Completed"),IN_PROGRESS("In Progress"),OPEN("Open"),UAT_TEST("UAT Testing");
+    OPEN("Open"), IN_PROGRESS("In Progress"), UAT_TEST("UAT Testing"), COMPLETED("Completed");
 
     private final String value;
 
-    private Status(String value){
+   private Status(String value) {
         this.value = value;
     }
 
-    public String getStatus(){
+    public String getValue() {
         return value;
     }
 }

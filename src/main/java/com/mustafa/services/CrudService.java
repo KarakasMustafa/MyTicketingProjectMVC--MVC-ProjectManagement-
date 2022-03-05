@@ -1,19 +1,15 @@
 package com.mustafa.services;
 
-import org.springframework.stereotype.Service;
+import com.mustafa.dto.RoleDTO;
 
 import java.util.List;
 
 public interface CrudService<T,ID> {
 
-   List<T> findAll();
-   T save(T object);
-   T findById(ID id);
-   void delete(T object);
-   void deleteById(ID id);
-   void update(T object);
-
-
-
-
+    List<T> findAll();
+    T findByID(ID id);
+    void delete(T object);
+    void deleteByID(ID id);
+    T save(T object);
+    void update(T object);
 }

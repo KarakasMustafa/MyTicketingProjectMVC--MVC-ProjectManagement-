@@ -1,6 +1,5 @@
 package com.mustafa.converter;
 
-
 import com.mustafa.dto.UserDTO;
 import com.mustafa.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,6 @@ public class UserDtoConverter implements Converter<String, UserDTO> {
 
     @Override
     public UserDTO convert(String source) {
-        return userService.findById(source);
+        return userService.findByID(source);
     }
 }

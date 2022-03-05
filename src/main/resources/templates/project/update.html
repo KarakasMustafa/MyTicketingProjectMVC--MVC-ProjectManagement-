@@ -32,7 +32,8 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs validation" novalidate th:action="@{/project/create}" method="post" th:object="${project}">
+                                    <form class="needs validation" novalidate th:action="@{/project/update/{id}(id=${project.projectCode})}"
+                                          method="post" th:object="${project}">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
@@ -45,30 +46,29 @@
                                                 </div>
                                             </div>
                                         </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label for="projectcode" class="col-form-label">Project Code</label>
-                                                        <input id="projectcode" type="text" placeholder="Project Code" th:field="*{projectCode}"
-                                                               class="form-control" required>
-                                                        <div class="invalid-feedback">
-                                                            Please Enter Project Code.
-                                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="projectcode" class="col-form-label">Project Code</label>
+                                                    <input id="projectcode" type="text" placeholder="Project Code" th:field="*{projectCode}"
+                                                           class="form-control" required readonly>
+                                                    <div class="invalid-feedback">
+                                                        Please Enter Project Code.
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="form-group">
-                                                        <label>Assigned Manager</label><br>
-                                                        <select class="custom-select" th:field="*{assignedManager}"
-                                                                required="required">
-                                                            <option  th:value="''" th:text="Select"></option>
-                                                            <option th:each="manager : ${managers}" th:value="${manager.userName}" th:text="${manager.firstName+' '+manager.lastName}"></option>
-                                                        </select>
-                                                    </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>Assigned Manager</label><br>
+                                                    <select class="custom-select" th:field="*{assignedManager}"
+                                                            required="required">
+                                                        <option th:each="manager : ${managers}" th:value="${manager.userName}" th:text="${manager.firstName+' '+manager.lastName}"></option>
+                                                    </select>
                                                 </div>
                                             </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
