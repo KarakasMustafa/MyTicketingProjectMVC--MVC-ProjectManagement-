@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class TaskDTO {
 
     private Long id;  // Task does not have it but I need ID for unique primary key
-    private ProjectDTO projectDTO;
+    private ProjectDTO project;
     private UserDTO assignedEmployee;
     private String taskSubject;
     private String taskDetail;
