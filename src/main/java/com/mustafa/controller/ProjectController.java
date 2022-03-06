@@ -68,9 +68,9 @@ public class ProjectController {
     }
 
     @PostMapping("/update/{projectcode}")
-    public String updateProject(@PathVariable("projectcode") String projectcode, Model model){
+    public String updateProject(@PathVariable("projectcode") String projectcode,ProjectDTO project, Model model){
 
-        projectService.update(projectService.findByID(projectcode));
+        projectService.update(project);
         return "redirect:/project/create";
 
     }
