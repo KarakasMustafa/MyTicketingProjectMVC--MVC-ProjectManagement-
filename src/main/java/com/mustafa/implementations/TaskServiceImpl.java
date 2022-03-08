@@ -20,6 +20,10 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO, Long> implement
 
     @Override
     public void update(TaskDTO object) {
+
+        TaskDTO foundProject = findByID(object.getId());
+        object.setAssignedDate(foundProject.getAssignedDate());
+        object.setTaskStatus(foundProject.getTaskStatus());
         super.update(object.getId(),object);
     }
 
@@ -37,4 +41,5 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO, Long> implement
     public TaskDTO findByID(Long id) {
         return super.findByID(id);
     }
+
 }
