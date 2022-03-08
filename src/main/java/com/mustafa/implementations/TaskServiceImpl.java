@@ -1,10 +1,12 @@
 package com.mustafa.implementations;
 
 import com.mustafa.dto.TaskDTO;
+import com.mustafa.dto.UserDTO;
 import com.mustafa.services.TaskService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl extends AbstractMapService<TaskDTO, Long> implements TaskService {
@@ -42,4 +44,9 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO, Long> implement
         return super.findByID(id);
     }
 
+
+    @Override
+    public List<TaskDTO> findTaskByManager(UserDTO manager) {
+        return super.findAll().stream().filter(task -> task.getProject().getAssignedManager().equals(manager)).collect(Collectors.toList());
+    }
 }
